@@ -22,6 +22,7 @@ import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.facebook.share.widget.MessageDialog;
+import com.walmart.android.activity.FriendsListViewActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -66,6 +67,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         facebookSDKInitialize();
         setContentView(R.layout.activity_home_screen);
         LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
+
         loginButton.setReadPermissions("user_friends");
         getLoginDetails(loginButton);
     }
@@ -82,12 +84,14 @@ public class HomeScreenActivity extends AppCompatActivity {
                 GraphRequestAsyncTask graphRequestAsyncTask = new GraphRequest(
                         login_result.getAccessToken(),
                        // AccessToken.getCurrentAccessToken(),
-                        "/me/friends",
+                        "/me/taggable_friends",
                         null,
                         HttpMethod.GET,
                         new GraphRequest.Callback() {
                             public void onCompleted(GraphResponse response) {
-                                Intent intent = new Intent(HomeScreenActivity.this,FriendsListActivity.class);
+
+                                Log.v("Response:",response.toString());
+                                Intent intent = new Intent(HomeScreenActivity.this,FriendsListViewActivity.class);
                                 try {
                                     JSONArray rawName = response.getJSONObject().getJSONArray("data");
                                     Log.v("jsondata", rawName.toString());
