@@ -147,7 +147,7 @@ public class FriendsListViewActivity extends AppCompatActivity {
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             if (viewType == VIEW_TYPE_ITEM) {
                 View view = LayoutInflater.from(FriendsListViewActivity.this).inflate(R.layout.raw_content_friend, parent, false);
-                view.setOnClickListener(FriendsListViewActivity.this);
+                //view.setOnClickListener(FriendsListViewActivity.this);
                 return new UserViewHolder(view);
             } else if (viewType == VIEW_TYPE_LOADING) {
                 View view = LayoutInflater.from(FriendsListViewActivity.this).inflate(R.layout.layout_loading_item, parent, false);
